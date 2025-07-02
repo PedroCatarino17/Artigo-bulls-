@@ -1,0 +1,307 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #f1f1f1;
+}
+
+header {
+  background-color: #111;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 2px solid red;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+}
+
+h1 {
+  font-size: 24px;
+  color: #fff;
+  margin: 0;
+}
+
+.carrinho-btn a {
+  font-size: 20px;
+  text-decoration: none;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+.carrinho-btn a:hover {
+  color: red;
+}
+
+.produto-card {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 2px solid red;
+  padding: 16px;
+  margin: 20px;
+  width: 200px;
+  text-align: center;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.produto-card:hover {
+  transform: scale(1.05);
+}
+
+.produto-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+button {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: darkred;
+}
+
+#produtos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid red;
+}
+
+a {
+  color: #00ccff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.produto-detalhe {
+  text-align: center;
+  padding: 40px;
+}
+
+.produto-detalhe img {
+  width: 300px;
+  max-width: 90%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#carrinho {
+  background-color: #222;
+  border: 1px solid red;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  display: none;
+  width: 300px;
+  border-radius: 12px;
+  z-index: 999;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.suporte-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.suporte-btn:hover {
+  background-color: #128C3F;
+}
+
+/* ✅ Estilo para formulário */
+.form-box {
+  background-color: #111;
+  border: 2px solid red;
+  border-radius: 12px;
+  padding: 40px 30px;
+  width: 380px;
+  margin: 100px auto;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+.form-box h2 {
+  margin-bottom: 25px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: none;
+  background-color: #eee;
+  color: #000;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 14px 0;
+  background-color: red;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.form-box button:hover {
+  background-color: darkred;
+}
+
+.form-box p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.form-box a {
+  color: #00ccff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.form-box a:hover {
+  text-decoration: underline;
+}
+
+#mensagem {
+  margin-top: 15px;
+  font-weight: bold;
+  min-height: 20px;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+}
+
+.login-box {
+  background-color: #111;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px red;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  color: white;
+}
+
+.login-box input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.login-box button {
+  width: 95%;
+  padding: 12px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-box button:hover {
+  background-color: darkred;
+}
+
+.login-box .link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-box .link a {
+  color: #00ccff;
+  text-decoration: none;
+}
+
+.login-box .link a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Mensagem flutuante laranja */
+#mensagem-flutuante {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: orange;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: bold;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#mensagem-flutuante.show {
+  display: block;
+  opacity: 1;
+}

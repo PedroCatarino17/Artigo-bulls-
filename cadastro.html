@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastrar | Artigos Bulls</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Criar Conta</h2>
+  <input type="email" id="email" placeholder="Digite seu e-mail" required />
+  <input type="password" id="senha" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required />
+  <input type="password" id="confirmaSenha" placeholder="Confirme a senha" minlength="6" required />
+  <button id="btnCadastrar">Cadastrar</button>
+  <div id="mensagem" style="margin-top: 12px; font-weight: bold;"></div>
+
+  <p>Já tem conta? <a href="login.html">Entrar</a></p>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { firebaseConfig } from './firebase/configure.js';
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const btnCadastrar = document.getElementById('btnCadastrar');
+  const mensagem = document.getElementById('mensagem');
+
+  btnCadastrar.addEventListener('click', () => {
+    mensagem.textContent = '';
+    mensagem.style.color = '';
+
+    const email = document.getElementById('email').value.trim();
+    const senha = document.getElementById('senha').value;
+    const confirmaSenha = document.getElementById('confirmaSenha').value;
+
+    if (!email || !senha || !confirmaSenha) {
+      mensagem.style.color = 'orange';
+      mensagem.textContent = 'Preencha todos os campos!';
+      return;
+    }
+
+    if (senha !== confirmaSenha) {
+      mensagem.style.color = 'red';
+      mensagem.textContent = 'As senhas não conferem.';
+      return;
+    }
+
+    if (senha.length < 6) {
+      mensagem.style.color = 'red';
+      mensagem.textContent = 'A senha precisa ter no mínimo 6 caracteres.';
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        mensagem.style.color = 'lightgreen';
+        mensagem.textContent = 'Conta criada com sucesso! Redirecionando para login...';
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 2000);
+      })
+      .catch((error) => {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Erro: ' + error.message;
+      });
+  });
+</script>
+
+</body>
+</html>

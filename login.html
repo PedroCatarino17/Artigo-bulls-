@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Artigos Bulls</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="login-wrapper">
+  <div class="login-box">
+    <h2>Entrar na Artigos Bulls</h2>
+    <input type="email" id="email" placeholder="Digite seu e-mail" required />
+    <input type="password" id="senha" placeholder="Digite sua senha" required />
+    <button id="btnLogin">Entrar</button>
+    <div id="mensagem" style="margin-top: 12px; font-weight: bold;"></div>
+    <div class="link">
+      <a href="cadastro.html">Cadastrar</a> |
+      <a href="recuperar.html">Esqueceu a senha?</a>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { firebaseConfig } from './firebase/configure.js';
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const btnLogin = document.getElementById('btnLogin');
+  const mensagem = document.getElementById('mensagem');
+
+  btnLogin.addEventListener('click', () => {
+    mensagem.textContent = '';
+    mensagem.style.color = '';
+
+    const email = document.getElementById('email').value.trim();
+    const senha = document.getElementById('senha').value;
+
+    if (!email || !senha) {
+      mensagem.style.color = 'orange';
+      mensagem.textContent = 'Preencha todos os campos!';
+      return;
+    }
+
+    signInWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        mensagem.style.color = 'lightgreen';
+        mensagem.textContent = 'Login realizado com sucesso! Redirecionando...';
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      })
+      .catch((error) => {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Erro no login: ' + error.message;
+      });
+  });
+</script>
+
+</body>
+</html>

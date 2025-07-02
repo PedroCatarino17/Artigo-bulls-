@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recuperar Senha | Artigos Bulls</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Recuperar Senha</h2>
+  <input type="email" id="email" placeholder="Digite seu e-mail" required />
+  <button id="btnRecuperar">Enviar Link de Recuperação</button>
+  <div id="mensagem" style="margin-top: 12px; font-weight: bold;"></div>
+
+  <p><a href="login.html">Voltar para login</a></p>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getAuth,
+    sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { firebaseConfig } from './firebase/configure.js';
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const btnRecuperar = document.getElementById('btnRecuperar');
+  const mensagem = document.getElementById('mensagem');
+
+  btnRecuperar.addEventListener('click', () => {
+    mensagem.textContent = '';
+    mensagem.style.color = '';
+
+    const email = document.getElementById('email').value.trim();
+
+    if (!email) {
+      mensagem.style.color = 'orange';
+      mensagem.textContent = 'Informe seu e-mail!';
+      return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        mensagem.style.color = 'lightgreen';
+        mensagem.textContent = 'Email enviado! Verifique sua caixa de entrada.';
+      })
+      .catch((error) => {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Erro: ' + error.message;
+      });
+  });
+</script>
+
+</body>
+</html>

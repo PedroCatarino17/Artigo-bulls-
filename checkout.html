@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Finalizar Compra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .checkout-container {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .pix-box, .confirmado {
+      background-color: #111;
+      padding: 20px;
+      border: 2px solid red;
+      margin-top: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .pix-chave {
+      font-size: 20px;
+      color: lime;
+      margin-top: 10px;
+      word-break: break-word;
+      font-weight: bold;
+    }
+
+    .confirmado {
+      color: lime;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    /* Botão Voltar para o menu */
+    .voltar-menu {
+      display: inline-block;
+      margin: 30px auto 10px;
+      padding: 12px 24px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .voltar-menu:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="imagens/logo.png" alt="Logo Artigos Bulls" />
+      <h1>Artigos Bulls</h1>
+    </div>
+  </header>
+
+  <!-- ✅ Botão voltar para o menu -->
+  <div style="text-align: center;">
+    <a href="index.html" class="voltar-menu">← Voltar para o menu</a>
+  </div>
+
+  <main class="checkout-container">
+    <h2>Escolha a forma de pagamento</h2>
+    <button onclick="pagarPix()">Pagar com PIX</button>
+    <button onclick="pagarCartao()">Pagar com Cartão</button>
+
+    <div class="pix-box" id="pixBox">
+      <p>Chave Pix (CPF):</p>
+      <div class="pix-chave" id="chavePix">511.069.628-42</div>
+      <button onclick="copiarPix()">📋 Copiar chave Pix</button>
+    </div>
+
+    <div class="confirmado" id="confirmado">
+      ✅ Compra quase finalizada! Agora envie o comprovante para concluir.
+      <br />
+      <button onclick="enviarComprovante()">Enviar Comprovante</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>Contato: +55 11 91287-4874 | <a href="mailto:kakau59d@gmail.com">kakau59d@gmail.com</a></p>
+    <p><a href="https://www.instagram.com/artigosbulls" target="_blank">@artigosbulls</a></p>
+  </footer>
+
+  <script>
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    function pagarPix() {
+      document.getElementById("pixBox").style.display = "block";
+      document.getElementById("confirmado").style.display = "none";
+    }
+
+    function pagarCartao() {
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+      const mensagem = encodeURIComponent("Oi, queria pagar com o cartão os seguintes produtos:\n" +
+        carrinho.map(item => `- ${item.nome} (R$ ${item.preco},00)`).join("\n"));
+      window.open(`https://wa.me/5511912874874?text=${mensagem}`, "_blank");
+    }
+
+    function copiarPix() {
+      const chave = document.getElementById("chavePix").innerText;
+      navigator.clipboard.writeText(chave).then(() => {
+        alert("Chave Pix copiada!");
+        document.getElementById("confirmado").style.display = "block";
+        document.getElementById("pixBox").style.display = "none";
+        localStorage.removeItem("carrinho");
+      });
+    }
+
+    function enviarComprovante() {
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+      const mensagem = encodeURIComponent("Olá, já realizei o pagamento via Pix. Segue o comprovante.\nProdutos:\n" +
+        carrinho.map(item => `- ${item.nome} (R$ ${item.preco},00)`).join("\n"));
+      window.open(`https://wa.me/5511912874874?text=${mensagem}`, "_blank");
+    }
+  </script>
+</body>
+</html>
