@@ -12,8 +12,68 @@ const produtos = [
 const container = document.getElementById("produtos-container");
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 const carrinhoDiv = document.getElementById("itens-carrinho");
+const contador = document.getElementById("contador-carrinho");
 
-// Mostrar produtos
+function atualizarContadorCarrinho() {
+  const qtd = carrinho.length;
+  contador.textContent = qtd;
+  contador.style.display = qtd > 0 ? "inline-block" : "none";
+}
+
+function mostrarMensagem(texto) {
+  const msg = document.getElementById("mensagem-flutuante");
+  msg.innerText = texto;
+  msg.classList.add("show");
+  setTimeout(() => {
+    msg.classList.remove("show");
+  }, 3000);
+}
+
+function atualizarCarrinho() {
+  carrinhoDiv.innerHTML = "";
+  carrinho.forEach((item, i) => {
+    carrinhoDiv.innerHTML += `<p>${item.nome} - R$ ${item.preco} <button onclick="removerDoCarrinho(${i})">❌</button></p>`;
+  });
+  atualizarContadorCarrinho();
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+
+function adicionarAoCarrinho(index) {
+  carrinho.push(produtos[index]);
+  mostrarMensagem(`${produtos[index].nome} foi adicionado ao carrinho!`);
+  atualizarCarrinho();
+}
+
+function removerDoCarrinho(index) {
+  carrinho.splice(index, 1);
+  mostrarMensagem(`Item removido do carrinho.`);
+  atualizarCarrinho();
+}
+
+function abrirCarrinho() {
+  const carrinhoEl = document.getElementById("carrinho");
+  carrinhoEl.style.display = carrinhoEl.style.display === "block" ? "none" : "block";
+}
+
+function finalizarCompra() {
+  if (carrinho.length === 0) {
+    mostrarMensagem("Seu carrinho está vazio!");
+    return;
+  }
+  window.location.href = "checkout.html";
+}
+
+function verMais(index) {
+  const produto = produtos[index];
+  localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
+  window.location.href = "produto.html";
+}
+
+function abrirSuporte() {
+  window.open("https://wa.me/5511912874874", "_blank");
+}
+
+// Inicializa página
 produtos.forEach((produto, index) => {
   const card = document.createElement("div");
   card.className = "produto-card";
@@ -27,55 +87,5 @@ produtos.forEach((produto, index) => {
   container.appendChild(card);
 });
 
-function verMais(index) {
-  const produto = produtos[index];
-  localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
-  window.location.href = "produto.html";
-}
-
-function adicionarAoCarrinho(index) {
-  carrinho.push(produtos[index]);
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  mostrarMensagem(`${produtos[index].nome} foi adicionado ao carrinho!`);
-  atualizarCarrinho();
-}
-
-function abrirCarrinho() {
-  document.getElementById("carrinho").style.display = "block";
-  atualizarCarrinho();
-}
-
-function atualizarCarrinho() {
-  carrinhoDiv.innerHTML = "";
-  carrinho.forEach((item, i) => {
-    carrinhoDiv.innerHTML += `<p>${item.nome} - R$ ${item.preco} <button onclick="removerDoCarrinho(${i})">❌</button></p>`;
-  });
-}
-
-function removerDoCarrinho(index) {
-  carrinho.splice(index, 1);
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  atualizarCarrinho();
-}
-
-function finalizarCompra() {
-  if (carrinho.length === 0) {
-    mostrarMensagem("Seu carrinho está vazio!");
-    return;
-  }
-  window.location.href = "checkout.html";
-}
-
-// ✅ Mensagem flutuante com estilo
-function mostrarMensagem(texto) {
-  const msg = document.getElementById("mensagem-flutuante");
-  msg.innerText = texto;
-  msg.classList.add("show");
-
-  setTimeout(() => {
-    msg.classList.remove("show");
-  }, 3000);
-}
-
-// Atualiza carrinho na inicialização
 atualizarCarrinho();
+atualizarContadorCarrinho();

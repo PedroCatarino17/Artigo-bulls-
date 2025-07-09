@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Detalhes do Produto - Artigos Bulls</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,33 +15,32 @@
     </div>
   </header>
 
-  <main class="produto-detalhe" id="produto-detalhe">
-    <!-- Detalhes do produto vão aparecer aqui pelo JS -->
+  <main class="produto-detalhe" id="produto-detalhe" style="text-align:center; padding:30px;">
+    <!-- Conteúdo será inserido pelo JS -->
   </main>
 
   <div style="text-align: center; margin-bottom: 40px;">
-    <a href="index.html" style="color: red; font-weight: bold; font-size: 18px;">← Voltar ao menu</a>
+    <button id="btn-voltar" style="background:none; border:none; color:#0077cc; font-weight:bold; font-size:18px; cursor:pointer;">
+      ← Voltar ao menu
+    </button>
   </div>
 
   <footer>
-    <p>Contato: +55 11 91287-4874 | <a href="mailto:kakau59d@gmail.com">kakau59d@gmail.com</a></p>
+    <div class="footer-buttons" style="justify-content: center; gap: 15px; padding: 10px;">
+      <a href="https://wa.me/5511912874874" target="_blank" class="btn-whatsapp" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.instagram.com/artigosbulls" target="_blank" class="btn-instagram" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="mailto:Artigosbulls@gmail.com" class="btn-email" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <p>Contato: +55 11 91287-4874 | Artigosbulls@gmail.com</p>
     <p><a href="https://www.instagram.com/artigosbulls" target="_blank">@artigosbulls</a></p>
   </footer>
 
-  <script>
-    const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
-    const container = document.getElementById("produto-detalhe");
-
-    if (produto) {
-      container.innerHTML = `
-        <img src="imagens/${produto.imagem}" alt="${produto.nome}" />
-        <h2>${produto.nome}</h2>
-        <p><strong>Preço:</strong> R$ ${produto.preco},00</p>
-        <p>Produto de alta qualidade disponível na loja Artigos Bulls.</p>
-      `;
-    } else {
-      container.innerHTML = "<p>Produto não encontrado.</p>";
-    }
-  </script>
+  <script src="produto.js"></script>
 </body>
 </html>

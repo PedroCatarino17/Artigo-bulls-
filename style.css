@@ -6,13 +6,13 @@ body {
 }
 
 header {
-  background-color: #111;
+  background-color: #0077cc; /* azul vibrante */
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  border-bottom: 2px solid red;
+  border-bottom: 3px solid #005fa3; /* azul escuro */
 }
 
 .logo {
@@ -33,21 +33,43 @@ h1 {
   margin: 0;
 }
 
-.carrinho-btn a {
-  font-size: 20px;
-  text-decoration: none;
-  color: #f1f1f1;
+/* Carrinho sem fundo (transparente) */
+.carrinho-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  background-color: transparent;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.carrinho-btn a:hover {
-  color: red;
+.carrinho-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Contador do carrinho: fundo vermelho, texto branco */
+.contador-carrinho {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red; /* fundo vermelho */
+  color: white; /* texto branco */
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  display: none; /* esconde se zero */
 }
 
 .produto-card {
   background-color: #1a1a1a;
   color: #fff;
-  border: 2px solid red;
+  border: 2px solid #005fa3; /* azul escuro */
   padding: 16px;
   margin: 20px;
   width: 200px;
@@ -58,6 +80,7 @@ h1 {
 
 .produto-card:hover {
   transform: scale(1.05);
+  border-color: #0077cc; /* azul vibrante */
 }
 
 .produto-card img {
@@ -67,7 +90,7 @@ h1 {
 }
 
 button {
-  background-color: red;
+  background-color: #0077cc; /* azul vibrante */
   color: white;
   padding: 10px;
   margin: 5px;
@@ -75,52 +98,23 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: darkred;
+  background-color: #005fa3; /* azul escuro */
 }
 
 #produtos-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-footer {
-  background-color: #111;
-  color: #ccc;
   padding: 20px;
-  text-align: center;
-  margin-top: 40px;
-  border-top: 1px solid red;
-}
-
-a {
-  color: #00ccff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.produto-detalhe {
-  text-align: center;
-  padding: 40px;
-}
-
-.produto-detalhe img {
-  width: 300px;
-  max-width: 90%;
-  border-radius: 10px;
-  margin-bottom: 20px;
 }
 
 #carrinho {
   background-color: #222;
-  border: 1px solid red;
+  border: 1px solid #005fa3; /* azul escuro */
   color: white;
   padding: 20px;
   position: fixed;
@@ -134,11 +128,12 @@ a:hover {
   max-height: 400px;
 }
 
-.suporte-btn {
+/* Botão flutuante de suporte */
+#suporte-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25D366;
+  background-color: #25D366; /* verde WhatsApp */
   color: white;
   padding: 12px 20px;
   border-radius: 30px;
@@ -147,142 +142,52 @@ a:hover {
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
   z-index: 1000;
   transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
 }
 
-.suporte-btn:hover {
+#suporte-btn:hover {
   background-color: #128C3F;
 }
 
-/* ✅ Estilo para formulário */
-.form-box {
-  background-color: #111;
-  border: 2px solid red;
-  border-radius: 12px;
-  padding: 40px 30px;
-  width: 380px;
-  margin: 100px auto;
+/* Rodapé com azul vibrante e borda azul escura */
+footer {
+  background-color: #0077cc; /* azul vibrante */
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  margin-top: 40px;
+  border-top: 3px solid #005fa3; /* azul escuro */
+  color: #f1f1f1;
 }
 
-.form-box h2 {
-  margin-bottom: 25px;
-  color: #fff;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.form-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 6px;
-  border: none;
-  background-color: #eee;
-  color: #000;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.form-box button {
-  width: 100%;
-  padding: 14px 0;
-  background-color: red;
-  color: white;
-  font-size: 17px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-.form-box button:hover {
-  background-color: darkred;
-}
-
-.form-box p {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #ccc;
-}
-
-.form-box a {
-  color: #00ccff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.form-box a:hover {
-  text-decoration: underline;
-}
-
-#mensagem {
-  margin-top: 15px;
-  font-weight: bold;
-  min-height: 20px;
-}
-
-.login-wrapper {
+.footer-buttons {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #000;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.login-box {
-  background-color: #111;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px red;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  color: white;
-}
-
-.login-box input {
-  width: 90%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
-}
-
-.login-box button {
-  width: 95%;
-  padding: 12px;
-  background-color: red;
+/* Botões do rodapé sem fundo, apenas ícones, tamanho maior */
+.footer-buttons a {
+  padding: 12px 20px;
+  border-radius: 8px;
   color: white;
   font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.login-box button:hover {
-  background-color: darkred;
-}
-
-.login-box .link {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.login-box .link a {
-  color: #00ccff;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  background-color: transparent; /* sem fundo */
+  border: none;
 }
 
-.login-box .link a:hover {
-  text-decoration: underline;
+.footer-buttons a:hover {
+  color: #ddd;
 }
 
-/* ✅ Mensagem flutuante laranja */
+/* Mensagem flutuante */
 #mensagem-flutuante {
   position: fixed;
   top: 20px;

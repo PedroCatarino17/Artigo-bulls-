@@ -1,41 +1,31 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Produto | Artigos Bulls</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <img src="imagens/logo.png" alt="Logo" />
-      <h1>Artigos Bulls</h1>
-    </div>
-    <a href="index.html">🏠 Voltar</a>
-  </header>
+const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
+const container = document.getElementById("produto-detalhe");
 
-  <main>
-    <div id="produto-detalhe" style="text-align: center; padding: 30px;"></div>
-  </main>
+if (produto) {
+  container.innerHTML = `
+    <img src="imagens/${produto.imagem}" alt="${produto.nome}" style="width:250px; border-radius:8px; margin-bottom: 15px;" />
+    <h2>${produto.nome}</h2>
+    <p><strong>Preço:</strong> R$ ${produto.preco},00</p>
+    <p>Produto de alta qualidade disponível na loja Artigos Bulls.</p>
+    <button id="btn-adicionar" style="background:#0077cc; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; margin-top:15px;">
+      Adicionar ao Carrinho
+    </button>
+  `;
 
-  <script>
-    const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
-    const div = document.getElementById("produto-detalhe");
+  // Adicionar evento para botão "Adicionar ao Carrinho"
+  document.getElementById("btn-adicionar").addEventListener("click", () => {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    carrinho.push(produto);
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    alert("Produto adicionado ao carrinho!");
+    window.location.href = "index.html";
+  });
 
-    if (produto) {
-      div.innerHTML = `
-        <img src="imagens/${produto.imagem}" style="width: 250px;" />
-        <h2>${produto.nome}</h2>
-        <p>R$ ${produto.preco},00</p>
-        <button onclick="adicionar()">Adicionar ao Carrinho</button>
-      `;
-    }
+} else {
+  container.innerHTML = "<p>Produto não encontrado.</p>";
+}
 
-    function adicionar() {
-      alert("Produto adicionado! Volte para o carrinho.");
-      window.location.href = "index.html";
-    }
-  </script>
-</body>
-</html>
+// Botão Voltar ao Menu
+document.getElementById("btn-voltar").addEventListener("click", () => {
+  window.location.href = "index.html";
+});
