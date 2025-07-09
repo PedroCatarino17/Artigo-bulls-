@@ -23,8 +23,9 @@ header {
 
 .logo img {
   width: 40px;
-  height: auto;
-  object-fit: contain;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%; /* deixa a imagem redondinha */
 }
 
 h1 {
@@ -56,20 +57,20 @@ h1 {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: red; /* fundo vermelho */
-  color: white; /* texto branco */
+  background-color: red;
+  color: white;
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
-  display: none; /* esconde se zero */
+  display: none;
 }
 
 .produto-card {
   background-color: #1a1a1a;
   color: #fff;
-  border: 2px solid #005fa3; /* azul escuro */
+  border: 2px solid #005fa3;
   padding: 16px;
   margin: 20px;
   width: 200px;
@@ -80,7 +81,7 @@ h1 {
 
 .produto-card:hover {
   transform: scale(1.05);
-  border-color: #0077cc; /* azul vibrante */
+  border-color: #0077cc;
 }
 
 .produto-card img {
@@ -90,7 +91,7 @@ h1 {
 }
 
 button {
-  background-color: #0077cc; /* azul vibrante */
+  background-color: #0077cc;
   color: white;
   padding: 10px;
   margin: 5px;
@@ -102,7 +103,7 @@ button {
 }
 
 button:hover {
-  background-color: #005fa3; /* azul escuro */
+  background-color: #005fa3;
 }
 
 #produtos-container {
@@ -114,7 +115,7 @@ button:hover {
 
 #carrinho {
   background-color: #222;
-  border: 1px solid #005fa3; /* azul escuro */
+  border: 1px solid #005fa3;
   color: white;
   padding: 20px;
   position: fixed;
@@ -128,12 +129,11 @@ button:hover {
   max-height: 400px;
 }
 
-/* Botão flutuante de suporte */
 #suporte-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25D366; /* verde WhatsApp */
+  background-color: #25D366;
   color: white;
   padding: 12px 20px;
   border-radius: 30px;
@@ -150,13 +150,12 @@ button:hover {
   background-color: #128C3F;
 }
 
-/* Rodapé com azul vibrante e borda azul escura */
 footer {
-  background-color: #0077cc; /* azul vibrante */
+  background-color: #0077cc;
   padding: 20px;
   text-align: center;
   margin-top: 40px;
-  border-top: 3px solid #005fa3; /* azul escuro */
+  border-top: 3px solid #005fa3;
   color: #f1f1f1;
 }
 
@@ -167,7 +166,6 @@ footer {
   flex-wrap: wrap;
 }
 
-/* Botões do rodapé sem fundo, apenas ícones, tamanho maior */
 .footer-buttons a {
   padding: 12px 20px;
   border-radius: 8px;
@@ -179,7 +177,7 @@ footer {
   justify-content: center;
   font-size: 1.5rem;
   transition: color 0.3s ease;
-  background-color: transparent; /* sem fundo */
+  background-color: transparent;
   border: none;
 }
 
@@ -187,7 +185,6 @@ footer {
   color: #ddd;
 }
 
-/* Mensagem flutuante */
 #mensagem-flutuante {
   position: fixed;
   top: 20px;
